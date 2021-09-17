@@ -7,6 +7,7 @@ import axios from "axios";
 import formSchema from './formSchema';
 import * as yup from 'yup';
 import Pizza from './pizza'
+import styled from 'styled-components';
 const initialFormValues = {
   name:'',
   specialinfo: '',
@@ -76,15 +77,26 @@ const App = () => {
     (valid => setDisabled(!valid))
   }, [formValues])
   
+  const HeaderStyle = styled.nav`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  h1{
+    font-size: 4rem;
+    color: red;
+  }
+  
+  `
   return (
     <div className='App'>
-    <nav>
+    <HeaderStyle>
       <h1 className='page-header'>Lambda Eats</h1>
       <div className='nav-links'>
         <Link to='/'>Home</Link>
   
       </div>
-    </nav>
+    </HeaderStyle>
       <Switch>
       
     

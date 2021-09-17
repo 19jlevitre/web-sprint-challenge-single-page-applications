@@ -1,5 +1,5 @@
 import React from 'react'
-
+import styled from 'styled-components'
 export default function PizzaForm(props) {
     const {
         values,
@@ -21,20 +21,50 @@ const onChange = evt => {
     change(name, valueToUse);
 }
 
+const StyledForm = styled.form`
+display: flex;
+justify-content: center;
+background-color: #e8c476;
+align-items: center;
+flex-direction: column;
+height: 80vh;
 
-    return (
-        <form id='pizza-form' className='form-container' onSubmit={onSubmit}>
+h2{
+    font-size: 3rem;
+    color: red;
+}
+button{
+    width: 30%;
+    height: 3vh;
+
+}
+input{
+    width: 80%;
+    display: flex;
+    justify-content: spaced-evenly;
+    font-size: 1.5rem;
+}
+
+`
+    
+const StyledWrapper = styled.div`
+width: 50%
+
+`
+
+return (
+        <StyledForm id='pizza-form' className='form-container' onSubmit={onSubmit}>
             <div className='form-submit' >
             <h2>Get Your Pizza</h2>
             
-            <button id='order-button' disabled={disabled}>submit</button>
+            
 
             <div className='errors'>
                 <div>{errors.name}</div>
             </div>
         </div>
         
-        <div className='inputs'>
+        <StyledWrapper className='inputs'>
         <label>Name:
             <input 
              value={values.name}
@@ -108,8 +138,9 @@ const onChange = evt => {
         
         </label>
         </div>
-        </div>
-        </form>
+        <button id='order-button' disabled={disabled}>submit</button>
+        </StyledWrapper>
+        </StyledForm>
         
     )
 }
