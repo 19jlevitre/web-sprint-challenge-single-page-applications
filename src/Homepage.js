@@ -1,24 +1,48 @@
 import React from 'react'
-// We'll need React Router's own version of the History API
 import { useHistory } from 'react-router-dom';
-
+import styled from 'styled-components';
+import Pizza from './Assets/Pizza.jpg';
 export default function Homepage() {
-  // 👉 STEP 5 - Build a click handler that will imperatively
-  // navigate us to <website base URL>/items-list
+  
   const history = useHistory();
 
   const routeToForm = () => {
     history.push('/pizza');
   }
 
+  const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: grey;
+  margin: 5% 10%;
+  h2{
+    font-size: 6rem;
+    color: red;
+  }
+  `
+  const ImageContain = styled.div`
+  background-image: url("${Pizza}");
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button{
+      width: 20%;
+      height: 5vh;
+      button-radius: 15%;
+      font-size: 1.5rem;
+
+  }
+  
+  `
   return (
-    <div className='home-wrapper'>
-      <h1>Lambda Eats</h1>
-      <img
-        className='home-image'
-         src='../Assets/Pizza.jpg'
-        alt=''
-      />
+    <Wrapper className='home-wrapper'>
+      <h2>PIZZA TIME??</h2>
+      <ImageContain className="img-container">
+      
 
       <button
         onClick={routeToForm}
@@ -27,6 +51,7 @@ export default function Homepage() {
       >
         Pizza?
       </button>
-    </div>
+      </ImageContain>
+    </Wrapper>
   )
 }

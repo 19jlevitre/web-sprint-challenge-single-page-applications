@@ -78,10 +78,15 @@ const App = () => {
   
   return (
     <div className='App'>
-    
-      <Route path='/'>
-      <Homepage/>
-    </Route>
+    <nav>
+      <h1 className='page-header'>Lambda Eats</h1>
+      <div className='nav-links'>
+        <Link to='/'>Home</Link>
+  
+      </div>
+    </nav>
+      <Switch>
+      
     
     <Route path="/pizza">
       <PizzaForm
@@ -101,7 +106,10 @@ const App = () => {
       }
 
 </Route>
-      
+<Route path='/'>
+      <Homepage/>
+    </Route>
+      </Switch>
     </div>
   );
 };
