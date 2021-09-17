@@ -10,8 +10,9 @@ const formSchema = yup.object().shape({
     .string(),
     cheese: yup.boolean(),
     bacon: yup.boolean(),
-    pepperoni: yup.boolean(),
     olives: yup.boolean(),
+    pepperoni: yup.boolean(),
+    size: yup.string(),
 
 })
 

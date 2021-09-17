@@ -23,8 +23,8 @@ const onChange = evt => {
 
 
     return (
-        <form id='pizza-form' className='form-container'>
-            <div className='form-submit' onSubmit={onSubmit}>
+        <form id='pizza-form' className='form-container' onSubmit={onSubmit}>
+            <div className='form-submit' >
             <h2>Get Your Pizza</h2>
             
             <button id='order-button' disabled={disabled}>submit</button>
@@ -47,7 +47,7 @@ const onChange = evt => {
         
         <div className='dropdown'>
         <label>Size:
-        <select id='size-dropdown' type=''>
+        <select value={values.size} id='size-dropdown' type='' name='size' onChange={onChange} >
     
         <option value=''>-- Select a size --</option>
             <option value="Small">Small</option>

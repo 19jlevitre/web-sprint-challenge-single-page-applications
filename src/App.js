@@ -4,16 +4,17 @@ import Homepage from "./Homepage";
 import PizzaForm from "./pizzaForm";
 import React, {useState, useEffect } from 'react';
 import axios from "axios";
-import schema from './formSchema';
+import formSchema from './formSchema';
 import * as yup from 'yup';
 import Pizza from './pizza'
 const initialFormValues = {
   name:'',
   specialinfo: '',
+  cheese: false,
   bacon: false,
   olives: false,
   pepperoni: false,
-  cheese: false,
+  size: '',
 }
 const initialFormErrors = {
   name: '',
@@ -31,7 +32,8 @@ const App = () => {
     axios.post('https://reqres.in/api/orders', newPizza)
     .then(res => {
       console.log(res.data);
-      setPizza([res.data, ...pizza]);
+      const data = res.data;
+      setPizza([...pizza , data]);
       setFormValues(initialFormValues);
     }).catch(err => {
       console.error(err);
@@ -40,7 +42,7 @@ const App = () => {
   }
 
   const validate = (name, value) => {
-    yup.reach(schema, name)
+    yup.reach(formSchema, name)
     .validate(value)
     .then(() => setFormErrors({ ...formErrors, [name]: ''}))
     .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] })
@@ -59,15 +61,18 @@ const App = () => {
     const newPizza = {
       name: formValues.name.trim(),
       specialinfo: formValues.specialinfo.trim(),
-      toppings: ['cheese', 'olives', 'pepperoni', 'bacon'].filter(topping =>
-        !!formValues[topping])
+      cheese: formValues.cheese,
+      bacon:formValues.bacon,
+      olives: formValues.olives,
+      pepperoni: formValues.pepperoni,
+      size: formValues.size
     }
     postNewPizza(newPizza)
   }
 
   useEffect(() => {
     
-    schema.isValid(formValues).then
+    formSchema.isValid(formValues).then
     (valid => setDisabled(!valid))
   }, [formValues])
   
@@ -87,13 +92,14 @@ const App = () => {
       errors={formErrors}
       />
       
-      {pizza.map(info => {
+      {
+      pizza.map(info => {
       return(
-      <Pizza details={info}/>
+      <Pizza key={info.id} details={info}/>
       )
       })
       }
-      
+
 </Route>
       
     </div>
